@@ -3,6 +3,10 @@
 A Streamlit-based web application that uses **Natural Language Processing (NLP)** and **Sentence-BERT embeddings** to compare a user's resume with a job description. The tool returns a semantic similarity score and suggests missing keywords to improve your resume.
 
 ## Screenshots
+## 🌐 Deploy It Online
+
+Try the app live on **Streamlit Cloud**:
+🔗 [https://resume-matcher-semantic.streamlit.app/](https://resume-matcher-semantic.streamlit.app/)
 
 ![App Screenshot](image.png)
 
@@ -64,7 +68,6 @@ source venv/bin/activate  # or .\venv\Scripts\activate on Windows
 
 # Install dependencies
 pip install -r requirements.txt
-python -m spacy download en_core_web_sm
 ```
 
 ---
