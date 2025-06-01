@@ -3,7 +3,11 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sentence_transformers import SentenceTransformer, util
 
 # Load spaCy model for preprocessing (tokenization, lemmatization)
-nlp = spacy.load("en_core_web_sm")
+try:
+    nlp = spacy.load("en_core_web_sm")
+except OSError:
+    subprocess.run(["python", "-m", "spacy", "download", "en_core_web_sm"])
+    nlp = spacy.load("en_core_web_sm")
 
 # Load Sentence-BERT model once to avoid reloading on every request
 model = SentenceTransformer("all-MiniLM-L6-v2")
