@@ -2,6 +2,10 @@
 
 A Streamlit-based web application that uses **Natural Language Processing (NLP)** and **Sentence-BERT embeddings** to compare a user's resume with a job description. The tool returns a semantic similarity score and suggests missing keywords to improve your resume.
 
+## Screenshots
+
+![App Screenshot](image.png)
+
 ---
 
 ## 🚀 Features
