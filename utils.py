@@ -1,4 +1,5 @@
 import spacy
+from spacy.cli import download
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sentence_transformers import SentenceTransformer, util
 
@@ -6,7 +7,7 @@ from sentence_transformers import SentenceTransformer, util
 try:
     nlp = spacy.load("en_core_web_sm")
 except OSError:
-    subprocess.run(["python", "-m", "spacy", "download", "en_core_web_sm"])
+    download("en_core_web_sm")
     nlp = spacy.load("en_core_web_sm")
 
 # Load Sentence-BERT model once to avoid reloading on every request
