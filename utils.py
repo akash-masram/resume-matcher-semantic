@@ -1,30 +1,26 @@
 import spacy
-from spacy.cli import download
+from spacy.lang.en.stop_words import STOP_WORDS
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sentence_transformers import SentenceTransformer, util
 
 # Load spaCy model for preprocessing (tokenization, lemmatization)
-try:
-    nlp = spacy.load("en_core_web_sm")
-except OSError:
-    download("en_core_web_sm")
-    nlp = spacy.load("en_core_web_sm")
+nlp = spacy.blank("en")
 
 # Load Sentence-BERT model once to avoid reloading on every request
 model = SentenceTransformer("all-MiniLM-L6-v2")
 
 def preprocess(text: str) -> str:
     """
-    Clean and lemmatize input text using spaCy.
-    Removes stopwords and non-alphabetic tokens.
-    Returns a space-separated string of processed tokens.
+    Simple preprocessing using spaCy blank model.
+    Tokenizes text, lowercases, removes stopwords and punctuation.
     """
     if not text or not isinstance(text, str):
         return ""
 
     doc = nlp(text.lower())
-    tokens = [token.lemma_ for token in doc if token.is_alpha and not token.is_stop]
+    tokens = [token.text for token in doc if token.is_alpha and token.text not in STOP_WORDS]
     return " ".join(tokens)
+
 
 
 def get_semantic_match_score(resume_text: str, jd_text: str) -> float:
